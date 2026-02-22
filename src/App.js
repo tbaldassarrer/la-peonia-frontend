@@ -2,7 +2,8 @@
 /*   APP.JS     */
 /* ============ */
 
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as  Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import WelcomeSection from "./components/WelcomeSection";
@@ -88,11 +89,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <BackToTopButton />
-      <AppContent />
-    </Router>
+    <Router basename={process.env.PUBLIC_URL}>
+  <ScrollToTop />
+  <BackToTopButton />
+  <AppContent />
+</Router>
   );
 }
 
