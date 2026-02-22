@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/la-peonia-frontend/static/css/main.950e6b0a.css",
+    "main.js": "/la-peonia-frontend/static/js/main.c73661c4.js",
+    "index.html": "/la-peonia-frontend/index.html",
+    "main.950e6b0a.css.map": "/la-peonia-frontend/static/css/main.950e6b0a.css.map",
+    "main.c73661c4.js.map": "/la-peonia-frontend/static/js/main.c73661c4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.950e6b0a.css",
+    "static/js/main.c73661c4.js"
+  ]
+}
