@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="preview/hero-preview.png" alt="La Peonía Preview" width="100%">
+</p>
+
 # 🌸 La Peonía — Floristería Boutique
 
 Frontend desarrollado en **React** para La Peonía, una floristería boutique especializada en ramos artesanales y diseño floral para eventos.
