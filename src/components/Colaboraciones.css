@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+/* Contenedor general */
+.colaboraciones-container {
+  max-width: 100%;
+  max-height: 180px; /* Ajustado para permitir que las imágenes de 152px encajen */
+  background: linear-gradient(180deg, #cb9df3, #95a4ef);
+  padding: 20px 10px;
+  margin: 10px auto 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+
+}
+
+/* Título */
+.colaboraciones-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 12px;
+  color: white;
+}
+
+/* Carrusel */
+.carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+
+  /* Efecto degradado elegante solo en bordes */
+  -webkit-mask-image: linear-gradient(to right, 
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(0, 0, 0, 1) 90%,
+    rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, 
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(0, 0, 0, 1) 90%,
+    rgba(0, 0, 0, 0) 100%);
+}
+
+
+
+/* Track animado */
+.carousel-track {
+  display: flex;
+  gap: 30px;
+  will-change: transform;
+  transition: transform 0.1s linear;
+  width:100%;
+  height: auto;
+  
+}
+
+
+.carousel-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+ height: 100px; /* igual que el alto de la imagen para que siempre se centre */
+  padding: 40px; /* espacio interior para que no se pegue */
+  border-radius: 8px;
+  flex-shrink: 0;
+
+  overflow: hidden;
+background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+.carousel-item:hover {
+  transform: scale(1.05);
+}
+
+.carousel-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+}
+
+.infinite-scroll {
+  animation: scroll-left 40s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* ============================ */
+/* RESPONSIVE: TABLETS Y MÓVILES */
+/* ============================ */
+/* 🔽 MEDIA QUERY: Tablets (768px a 1024px) */
+@media (max-width: 1024px) {
+  .colaboraciones-container {
+    max-height: 200px;
+    padding: 20px 15px;
+  }
+
+  .colaboraciones-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .carousel-track {
+    height: auto;
+    gap: 20px;
+  }
+
+  .carousel-item {
+    width: 100px;
+    height: 70px;
+  }
+
+  .carousel-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* 🔽 MEDIA QUERY: Móviles (hasta 767px) */
+@media (max-width: 767px) {
+  .colaboraciones-container {
+    height: auto; /* 👈 permite que se adapte al contenido */
+    max-height: none; /* 👈 elimina el límite que crea espacio vacío */
+    padding: 15px 10px;
+    border-radius: 8px;
+    overflow: visible;
+  }
+
+  .colaboraciones-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .carousel-track {
+    height: auto;
+    gap: 16px;
+  }
+
+  .carousel-item {
+    width: 80px;
+    height: 60px;
+  }
+
+  .carousel-image {
+    width: 80px;
+    height: 80px;
+  }
+}

@@ -1,0 +1,33 @@
+/* ─── 1) Reset global + box-sizing ───────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── 2) Evitar solo scroll horizontal ───────────────────── */
+html {
+  overflow-x: hidden;
+}
+
+/* ─── 3) El body es el único que scrollea verticalmente ── */
+body {
+  margin: 0;
+  overflow-y: auto;           /* habilita scroll vertical */
+  overflow-x: hidden;         /* evita scroll horizontal */
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── 4) Monospace para <code> ───────────────────────────── */
+code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}

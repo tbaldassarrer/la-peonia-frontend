@@ -1,0 +1,160 @@
+/* PeoniaPages.css */
+
+.peonia-page {
+  padding: 120px 20px 70px;
+  font-family: "Inter", sans-serif;
+  background: #fffafc;
+  min-height: 100vh;
+}
+
+.peonia-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.peonia-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.peonia-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(106, 27, 154, 0.75);
+  font-weight: 700;
+}
+
+.peonia-title {
+  font-size: clamp(26px, 3.6vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #151515;
+}
+
+.peonia-subtitle {
+  color: rgba(27, 27, 27, 0.75);
+  line-height: 1.7;
+  max-width: 760px;
+}
+
+.peonia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.peonia-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(106, 27, 154, 0.14);
+  border-radius: 18px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.peonia-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.10);
+}
+
+.peonia-card-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+.peonia-card-body {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.peonia-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1b1b1b;
+}
+
+.peonia-card-text {
+  color: rgba(27, 27, 27, 0.75);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.peonia-pill-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.peonia-pill {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(156, 39, 176, 0.10);
+  color: rgba(106, 27, 154, 0.95);
+  border: 1px solid rgba(106, 27, 154, 0.18);
+  font-weight: 600;
+}
+
+/* CTA */
+.peonia-cta {
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(
+    90deg,
+    rgba(156, 39, 176, 0.12) 0%,
+    rgba(255, 250, 252, 0.7) 60%,
+    rgba(156, 39, 176, 0.06) 100%
+  );
+  border: 1px solid rgba(106, 27, 154, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.peonia-cta strong {
+  color: #1b1b1b;
+}
+
+.peonia-cta p {
+  margin: 0;
+  color: rgba(27, 27, 27, 0.75);
+}
+
+/* Reutiliza tus botones */
+.peonia-cta .btn {
+  margin-left: auto;
+}
+
+@media (max-width: 980px) {
+  .peonia-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .peonia-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .peonia-cta {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .peonia-cta .btn {
+    margin-left: 0;
+  }
+}

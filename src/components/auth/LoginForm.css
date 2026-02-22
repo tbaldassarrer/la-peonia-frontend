@@ -1,0 +1,79 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 40px;
+    min-height: 80vh;
+  }
+  
+  .login-title {
+    font-size: 2rem;
+    color: #6A1B9A;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    gap: 15px;
+  }
+  
+  .login-form input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .login-form button {
+    background-color: #9C27B0;
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-form button:hover {
+    background-color: #6A1B9A;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .login-container {
+      padding-top: 100px;
+    }
+  
+    .login-title {
+      font-size: 1.8rem;
+    }
+  
+    .login-form {
+      max-width: 90%;
+    }
+  }
+  .password-wrapper {
+    position: relative;
+  }
+  
+  .password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #6A1B9A;
+  }
+  

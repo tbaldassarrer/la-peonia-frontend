@@ -1,0 +1,316 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+/* ====== La Peonía palette ====== */
+:root {
+  --peonia-bg: #fffafc;
+  --peonia-text: rgba(27, 27, 27, 0.78);
+  --peonia-title: #151515;
+
+  --peonia-lila: #542f52;
+  --peonia-lila-dark: #3b213a;
+
+  --peonia-gradient: linear-gradient(
+    90deg,
+    rgba(156, 39, 176, 1),
+    rgba(250, 210, 235, 1)
+  );
+
+  --peonia-border: rgba(156, 39, 176, 0.14);
+  --peonia-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========= SECCIÓN PRINCIPAL ========= */
+.about-new-section {
+  padding: 120px 20px 70px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+  background: var(--peonia-bg);
+  color: var(--peonia-text);
+}
+
+/* ========= TITULOS ========= */
+.about-main-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: clamp(26px, 3.4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  background: var(--peonia-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.about-intro {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 26px;
+  font-size: clamp(15px, 1.7vw, 20px);
+  line-height: 1.7;
+  color: rgba(27, 27, 27, 0.72);
+}
+
+/* Subtítulos tipo sección */
+.about-cards-title,
+.about-values-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  font-size: clamp(22px, 2.8vw, 32px);
+  margin: 50px 0 22px;
+  color: var(--peonia-title);
+}
+
+.about-cards-title::before,
+.about-cards-title::after,
+.about-values-title::before,
+.about-values-title::after {
+  content: "";
+  flex: 1;
+  max-width: 170px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(156, 39, 176, 0.55),
+    rgba(250, 210, 235, 0.55)
+  );
+  border-radius: 4px;
+}
+
+/* ========= BLOQUES ========= */
+.about-block {
+  margin-bottom: 26px;
+}
+
+.about-block.centered {
+  text-align: center;
+}
+
+.about-block.horizontal {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 28px;
+  margin-top: 10px;
+}
+
+/* Imagen (nuevo about) */
+.about-image-wrapper-peonia {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--peonia-shadow);
+  border: 1px solid var(--peonia-border);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.about-image-peonia {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texto */
+.about-text-content {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(27, 27, 27, 0.78);
+}
+
+.about-text-content p {
+  margin-bottom: 14px;
+}
+
+.about-text-content b {
+  color: #1b1b1b;
+}
+
+/* ========= TARJETAS (esencia) ========= */
+.about-cards-section {
+  margin-top: 18px;
+}
+
+.about-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--peonia-border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--peonia-shadow);
+  backdrop-filter: blur(10px);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.10);
+}
+
+.card-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  color: var(--peonia-title);
+}
+
+.card-subtitle {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: rgba(106, 27, 154, 0.80);
+}
+
+.card-description {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(27, 27, 27, 0.72);
+}
+
+/* ========= VALORES ========= */
+.about-values-section {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.value-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--peonia-border);
+  border-radius: 18px;
+  padding: 16px 12px;
+  box-shadow: var(--peonia-shadow);
+  backdrop-filter: blur(10px);
+  transition: transform 0.18s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-2px);
+}
+
+.value-icon {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.value-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(27, 27, 27, 0.75);
+}
+
+/* ========= CTA FINAL ========= */
+.about-end {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  color: rgba(27, 27, 27, 0.75);
+}
+
+.about-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Botones: reutilizamos tu estilo, pero aquí dejamos fallback */
+.btn.btn-about {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+  border: 1px solid transparent;
+  background: var(--peonia-lila);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(156, 39, 176, 0.20);
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn.btn-about:hover {
+  background: var(--peonia-lila-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(106, 27, 154, 0.24);
+}
+
+.btn.btn-about.secondary {
+  background: rgba(255, 255, 255, 0.70);
+  color: var(--peonia-lila-dark);
+  border-color: rgba(106, 27, 154, 0.25);
+}
+
+.btn.btn-about.secondary:hover {
+  background: rgba(255, 255, 255, 0.90);
+  transform: translateY(-1px);
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 1024px) {
+  .about-block.horizontal {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-text-content {
+    text-align: left;
+  }
+
+  .about-image-peonia {
+    height: 320px;
+  }
+
+  .about-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .about-values-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .about-new-section {
+    padding: 105px 16px 60px;
+  }
+
+  .about-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-image-peonia {
+    height: 260px;
+  }
+}

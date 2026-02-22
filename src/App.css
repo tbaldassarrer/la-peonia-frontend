@@ -1,0 +1,16 @@
+/* ============ */
+/*   App.css    */
+/* ============ */
+
+/* Centrar el texto y el logo */
+.welcome-text {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: -40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
