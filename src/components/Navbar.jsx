@@ -82,8 +82,7 @@ const Navbar = ({ searchableData = [] }) => {
           aria-label="Ir a inicio"
           type="button"
         >
-          <img src="/img/logo_peonia2.png" alt="Logo La Peonía" />
-        </button>
+<img src={`${process.env.PUBLIC_URL}/img/logo_peonia2.png`} alt="Logo La Peonía" />        </button>
 
         {/* Menú móvil */}
         <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>

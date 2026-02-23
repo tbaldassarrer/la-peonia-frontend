@@ -31,11 +31,11 @@
   font-size: clamp(26px, 3.6vw, 40px);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: #151515;
+  color: #542f52;
 }
 
 .peonia-subtitle {
-  color: rgba(27, 27, 27, 0.75);
+  color: #542f52;
   line-height: 1.7;
   max-width: 760px;
 }
@@ -79,11 +79,11 @@
 .peonia-card-title {
   font-size: 16px;
   font-weight: 700;
-  color: #1b1b1b;
+  color: #542f52;
 }
 
 .peonia-card-text {
-  color: rgba(27, 27, 27, 0.75);
+  color: #542f52;
   line-height: 1.6;
   font-size: 14px;
 }
