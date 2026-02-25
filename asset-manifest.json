@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/la-peonia-frontend/static/css/main.5c8c5ac8.css",
-    "main.js": "/la-peonia-frontend/static/js/main.503f9661.js",
+    "main.css": "/la-peonia-frontend/static/css/main.f5b7b5a5.css",
+    "main.js": "/la-peonia-frontend/static/js/main.9a124043.js",
     "index.html": "/la-peonia-frontend/index.html",
-    "main.5c8c5ac8.css.map": "/la-peonia-frontend/static/css/main.5c8c5ac8.css.map",
-    "main.503f9661.js.map": "/la-peonia-frontend/static/js/main.503f9661.js.map"
+    "main.f5b7b5a5.css.map": "/la-peonia-frontend/static/css/main.f5b7b5a5.css.map",
+    "main.9a124043.js.map": "/la-peonia-frontend/static/js/main.9a124043.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c8c5ac8.css",
-    "static/js/main.503f9661.js"
+    "static/css/main.f5b7b5a5.css",
+    "static/js/main.9a124043.js"
   ]
 }
