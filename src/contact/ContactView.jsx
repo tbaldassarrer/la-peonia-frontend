@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./ContactView.css";
@@ -13,6 +14,8 @@ import {
 } from "react-icons/fa";
 
 const ContactView = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({ duration: 900 });
     window.scrollTo(0, 0);
@@ -24,35 +27,35 @@ const ContactView = () => {
     message: "",
   });
 
-  const [errors, setErrors] = useState({
-    name: false,
-    email: false,
-    message: false,
-  });
-
+  const [errors, setErrors] = useState({});
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
 
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: false });
+    setErrors({ ...errors, [e.target.name]: "" });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validación frontend con mensajes
     const newErrors = {
-      name: formData.name.trim() === "",
-      email: formData.email.trim() === "",
-      message: formData.message.trim() === "",
+      name: formData.name.trim() === "" ? "El nombre es obligatorio" : "",
+      email: formData.email.trim() === "" ? "El email es obligatorio" : "",
+      message: formData.message.trim() === "" ? "El mensaje es obligatorio" : "",
     };
 
     setErrors(newErrors);
 
-    const hasErrors = Object.values(newErrors).some(Boolean);
+    const hasErrors = Object.values(newErrors).some((msg) => msg);
     if (hasErrors) {
-      const firstErrorField = Object.keys(newErrors).find((key) => newErrors[key]);
+      const firstErrorField = Object.keys(newErrors).find(
+        (key) => newErrors[key]
+      );
       const el = document.getElementById(firstErrorField);
       if (el) el.focus();
       return;
@@ -63,18 +66,30 @@ const ContactView = () => {
     setIsSending(true);
 
     try {
-      // De momento dejamos este endpoint para cuando retomes backend.
-      const response = await fetch("http://localhost:8080/api/contacto", {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json().catch(() => null);
+
       if (response.ok) {
-        setToastMessage("🌸 ¡Mensaje enviado! Te responderemos pronto.");
+        setToastMessage("🌸 ¡Mensaje enviado! Redirigiendo...");
         setFormData({ name: "", email: "", message: "" });
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setTimeout(() => setShowToast(false), 4000);
+
+        // Espera 1.5 segundos y redirige al inicio
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
+      } else if (response.status === 400 && data?.errors) {
+        setErrors({
+          name: data.errors.name || "",
+          email: data.errors.email || "",
+          message: data.errors.message || "",
+        });
+
+        setToastMessage("❌ Revisa los campos marcados.");
       } else {
         setToastMessage("❌ No se pudo enviar. Inténtalo en unos minutos.");
       }
@@ -99,7 +114,6 @@ const ContactView = () => {
       )}
 
       <div className="contact-shell">
-        {/* Cabecera */}
         <div className="contact-header" data-aos="fade-up">
           <div className="contact-eyebrow">Contacto</div>
           <h2>Hablemos y creamos algo bonito 🌷</h2>
@@ -109,11 +123,12 @@ const ContactView = () => {
           </p>
         </div>
 
-        {/* Tarjeta: formulario */}
         <div className="contact-card" data-aos="fade-up">
           <form onSubmit={handleSubmit} className="contact-form">
+
+            {/* Nombre */}
             <div className="input-group">
-              <label htmlFor="name" className="input-icon clickable-icon" aria-label="Nombre">
+              <label htmlFor="name" className="input-icon clickable-icon">
                 <FaUser />
               </label>
               <input
@@ -126,9 +141,11 @@ const ContactView = () => {
                 onChange={handleChange}
               />
             </div>
+            {errors.name && <p className="field-error">{errors.name}</p>}
 
+            {/* Email */}
             <div className="input-group">
-              <label htmlFor="email" className="input-icon clickable-icon" aria-label="Email">
+              <label htmlFor="email" className="input-icon clickable-icon">
                 <FaRegEnvelope />
               </label>
               <input
@@ -141,9 +158,11 @@ const ContactView = () => {
                 onChange={handleChange}
               />
             </div>
+            {errors.email && <p className="field-error">{errors.email}</p>}
 
+            {/* Mensaje */}
             <div className="input-group">
-              <label htmlFor="message" className="input-icon clickable-icon" aria-label="Mensaje">
+              <label htmlFor="message" className="input-icon clickable-icon">
                 <FaRegCommentDots />
               </label>
               <textarea
@@ -155,6 +174,7 @@ const ContactView = () => {
                 onChange={handleChange}
               />
             </div>
+            {errors.message && <p className="field-error">{errors.message}</p>}
 
             <button type="submit" className="btn-contact" disabled={isSending}>
               {isSending ? "Enviando..." : "Enviar mensaje"}
@@ -166,22 +186,20 @@ const ContactView = () => {
           </form>
         </div>
 
-        {/* Bloque inferior */}
         <div className="contact-footer" data-aos="fade-up">
           <p>
             Toda gran historia empieza con un detalle. Si tienes una idea, aquí estamos.
           </p>
         </div>
 
-        {/* Iconos (genéricos) */}
         <div className="contact-icons" data-aos="fade-up">
-          <a href="mailto:hola@lapeonia.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+          <a href="mailto:hola@lapeonia.com" target="_blank" rel="noopener noreferrer">
             <FaEnvelope />
           </a>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
             <FaWhatsapp />
           </a>
-          <a href="tel:+34000000000" aria-label="Teléfono">
+          <a href="tel:+34000000000">
             <FaPhone />
           </a>
         </div>

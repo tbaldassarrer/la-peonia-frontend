@@ -13,7 +13,7 @@ const Footer = () => {
             <h2 className="footer-brand">La Peonía</h2>
 
             <Link to="/" className="footer-logo" aria-label="Ir a inicio">
-              <img src="/img/logo_peonia2.png" alt="Logo La Peonía" />
+<img src={`${process.env.PUBLIC_URL}/img/logo_peonia2.png`} alt="Logo La Peonía" />       
             </Link>
 
             <p className="footer-tagline">

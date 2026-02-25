@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import './Blog.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./Blog.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const BlogForm = () => {
-  const [titulo, setTitulo] = useState('');
-  const [contenido, setContenido] = useState('');
+  const [titulo, setTitulo] = useState("");
+  const [contenido, setContenido] = useState("");
   const [imagenFile, setImagenFile] = useState(null);
   const [postPreview, setPostPreview] = useState(null);
-  const [mensaje, setMensaje] = useState('');
+  const [mensaje, setMensaje] = useState("");
   const [modoEdicion, setModoEdicion] = useState(false);
 
-  const { id } = useParams();              // Detectar si hay id para editar
+  const { id } = useParams(); // si hay id => editar
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -23,12 +25,14 @@ const BlogForm = () => {
       const fetchPost = async () => {
         try {
           const res = await fetch(`/api/posts/${id}`);
+          if (!res.ok) throw new Error("No se pudo cargar el post");
           const data = await res.json();
-          setTitulo(data.titulo);
-          setContenido(data.contenido);
+          setTitulo(data.titulo || "");
+          setContenido(data.contenido || "");
           setPostPreview(data);
         } catch (err) {
-          console.error('❌ Error al cargar entrada para edición:', err);
+          console.error("❌ Error al cargar entrada para edición:", err);
+          setMensaje("⚠️ No se pudo cargar la entrada para editar.");
         }
       };
       fetchPost();
@@ -37,24 +41,26 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let imagenUrl = postPreview?.imagenUrl || '';
+    setMensaje("");
 
+    let imagenUrl = postPreview?.imagenUrl || "";
+
+    // 1) Subida de imagen (si hay)
     if (imagenFile) {
       const formData = new FormData();
-      formData.append('file', imagenFile);
+      formData.append("file", imagenFile);
 
       try {
-        const uploadRes = await fetch('/api/images/upload', {
-          method: 'POST',
+        const uploadRes = await fetch("/api/images/upload", {
+          method: "POST",
           body: formData,
         });
 
         if (uploadRes.ok) {
           const relativeUrl = await uploadRes.text();
-          imagenUrl = relativeUrl.startsWith('http')
-  ? relativeUrl
-  : `/api${relativeUrl}`;
-
+          imagenUrl = relativeUrl.startsWith("http")
+            ? relativeUrl
+            : `/api${relativeUrl}`;
         } else {
           console.error("❌ Fallo al subir la imagen.");
           setMensaje("⚠️ Imagen no subida.");
@@ -65,38 +71,38 @@ const BlogForm = () => {
       }
     }
 
-    const nuevoPost = {
-      titulo,
-      contenido,
-      imagenUrl,
-    };
+    // 2) Guardado/edición del post
+    const nuevoPost = { titulo, contenido, imagenUrl };
 
     try {
-const url = id
-  ? `/api/posts/admin/${id}`
-  : "/api/posts";
-
-
-      
-        const method = id ? "PUT" : "POST";
+      // OJO: estás usando endpoint admin para PUT (bien)
+      const url = id ? `/api/posts/admin/${id}` : "/api/posts";
+      const method = id ? "PUT" : "POST";
 
       const response = await fetch(url, {
         method,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(nuevoPost),
       });
 
       if (response.ok) {
         const savedPost = await response.json();
-        setMensaje(id ? "✅ Entrada actualizada correctamente." : "✅ Entrada publicada correctamente.");
+        setMensaje(
+          id
+            ? "✅ Entrada actualizada correctamente."
+            : "✅ Entrada publicada correctamente."
+        );
+
         setPostPreview(savedPost);
-        setTitulo('');
-        setContenido('');
+        setTitulo("");
+        setContenido("");
         setImagenFile(null);
-        document.querySelector('input[type="file"]').value = '';
-        navigate("/ourspark");
+
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = "";
+
+        // ✅ volvemos al blog que tú ya estás usando: /blog
+        navigate("/blog");
       } else {
         setMensaje("⚠️ Error al guardar la entrada.");
       }
@@ -120,12 +126,14 @@ const url = id
           onChange={(e) => setTitulo(e.target.value)}
           required
         />
+
         <textarea
           placeholder="Escribe aquí el contenido de la entrada..."
           value={contenido}
           onChange={(e) => setContenido(e.target.value)}
           required
         />
+
         <input
           type="file"
           accept="image/*"
@@ -136,12 +144,13 @@ const url = id
           <button type="submit">
             {modoEdicion ? "Actualizar entrada" : "Publicar entrada"}
           </button>
+
           <button
             type="button"
             className="logout-button"
             onClick={() => {
-              localStorage.removeItem("auth");
-              window.location.href = "/ourspark";
+              logout();
+              navigate("/blog");
             }}
           >
             Cerrar sesión
@@ -151,16 +160,26 @@ const url = id
 
       {mensaje && (
         <p
-          className={`blog-message ${mensaje.includes("❌") || mensaje.includes("⚠️") ? "error" : ""}`}
+          className={`blog-message ${
+            mensaje.includes("❌") || mensaje.includes("⚠️") ? "error" : ""
+          }`}
         >
           {mensaje}
         </p>
       )}
 
       {postPreview && (
-        <div className="blog-card" data-aos="fade-up" style={{ marginTop: '40px' }}>
+        <div
+          className="blog-card"
+          data-aos="fade-up"
+          style={{ marginTop: "40px" }}
+        >
           {postPreview.imagenUrl && (
-            <img src={postPreview.imagenUrl} alt={postPreview.titulo} className="blog-image" />
+            <img
+              src={postPreview.imagenUrl}
+              alt={postPreview.titulo}
+              className="blog-image"
+            />
           )}
           <div className="blog-content">
             <h3 className="blog-post-title">{postPreview.titulo}</h3>

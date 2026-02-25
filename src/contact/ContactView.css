@@ -228,3 +228,9 @@
     transform: translate(-50%, 0);
   }
 }
+
+.field-error{
+  margin: 6px 0 0 44px; /* ajusta si quieres */
+  font-size: 0.9rem;
+  color: #e5adf0;
+}

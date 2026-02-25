@@ -17,7 +17,7 @@ const WelcomeSection = () => {
         {/* Columna izquierda SOLO logo */}
         <div className="hero-left">
           <img
-            src="/img/logo_peonia2.png"
+            src={`${process.env.PUBLIC_URL}/img/logo_peonia2.png`} 
             alt="La Peonía"
             className="hero-logo"
           />

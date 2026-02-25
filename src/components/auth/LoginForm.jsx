@@ -17,7 +17,7 @@ const LoginForm = () => {
     e.preventDefault();
     const success = login(username, password);
     if (success) {
-navigate('/ourspark');
+navigate('/blog');
     } else {
       setMensaje('⚠️ Usuario o contraseña incorrectos');
     }

@@ -30,8 +30,7 @@ const AboutSection = () => {
       <div className="about-block horizontal">
         <div className="about-image-wrapper-peonia" data-aos="fade-left" data-aos-delay="0">
           <img
-            src="/img/peonia_about.jpg"
-            alt="Taller floral La Peonía"
+            src={`${process.env.PUBLIC_URL}/img/peonia_about.jpg`} alt="Logo La Peonía"
             className="about-image-peonia"
           />
         </div>

@@ -7,19 +7,19 @@ const EVENTOS = [
     title: "Bodas",
     text: "Ramos de novia, prendidos, centros y decoración integral.",
     tags: ["Moodboard", "Prueba", "Montaje"],
-    img: "/img/peonia_evento1.jpg",
+    img: `${process.env.PUBLIC_URL}/img/peonia_evento1.jpg`,
   },
   {
     title: "Eventos de empresa",
     text: "Decoración floral para recepciones, cenas y presentaciones.",
     tags: ["Marca", "Estilo", "Montaje"],
-    img: "/img/peonia_evento2.jpg",
+    img: `${process.env.PUBLIC_URL}/img/peonia_evento2.jpg`,
   },
   {
     title: "Cumpleaños y celebraciones",
     text: "Centros y ramos con personalidad para cada momento.",
     tags: ["Personalizado", "Temporada", "Rápido"],
-    img: "/img/peonia_evento3.jpg",
+    img: `${process.env.PUBLIC_URL}/img/peonia_evento3.jpg`,
   },
 ];
 

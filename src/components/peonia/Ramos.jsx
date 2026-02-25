@@ -7,19 +7,19 @@ const RAMOS = [
     title: "Ramo Clásico",
     text: "Elegancia atemporal. Perfecto para regalar con acierto.",
     tags: ["Rosas", "Eucalipto", "Tarjeta"],
-    img: "/img/peonia_ramo1.jpg",
+    img: `${process.env.PUBLIC_URL}/img/peonia_ramo1.jpg`,
   },
   {
     title: "Ramo Silvestre",
     text: "Flores de temporada con un aire natural y fresco.",
     tags: ["Temporada", "Texturas", "Ligero"],
-    img: "/img/peonia_ramo2.jpg",
+    img: `${process.env.PUBLIC_URL}/img/peonia_ramo2.jpg`,
   },
   {
     title: "Ramo Premium",
     text: "Una composición protagonista, ideal para ocasiones especiales.",
     tags: ["Premium", "Volumen", "Top"],
-    img: "/img/peonia_ramo3.jpg",
+    img: `${process.env.PUBLIC_URL}/img/peonia_ramo3.jpg`,
   },
 ];
 

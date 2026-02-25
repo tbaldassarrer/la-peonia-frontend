@@ -1,7 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 
+/* ===========================
+   PALETA LA PEONÍA
+   =========================== */
+:root{
+  --peonia-lila: #542f52;
+  --peonia-lila-dark: #381f37;
+
+  --peonia-bg: #fffafc;
+  --peonia-bg-soft: rgba(255, 245, 250, 0.95);
+  --peonia-card: rgba(255,255,255,0.85);
+
+  --peonia-text: #3b1f47;
+  --peonia-text-soft: rgba(59, 31, 71, 0.75);
+  --peonia-muted: rgba(59, 31, 71, 0.55);
+
+  --peonia-border: rgba(156, 39, 176, 0.14);
+  --peonia-shadow: 0 14px 28px rgba(0,0,0,0.10);
+  --peonia-shadow-soft: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+/* ===========================
+   BASE
+   =========================== */
 body, .blog-container {
-  background: #f8f9fa;
+  background: var(--peonia-bg);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
@@ -13,34 +36,45 @@ body, .blog-container {
   scroll-margin-top: 80px;
 }
 
-/* TITULOS */
+/* ===========================
+   TÍTULOS
+   =========================== */
 .blog-title {
   font-size: 2.5rem;
-  color: #9C27B0;
+  color: var(--peonia-lila);
   font-weight: 700;
-  margin-top: 80px;
-  margin-bottom: 10px;
+  margin: 80px 0 10px;
 }
 
 .blog-subtitle {
   font-size: 1.2rem;
-  color: #555;
+  color: var(--peonia-text-soft);
   margin-bottom: 40px;
 }
 
-/* BANNER PRINCIPAL */
+/* (estaba repetido: conservamos el resultado final que dejaste abajo) */
+.blog-title {
+  font-size: 2.4rem;
+  margin: 80px 0 40px;
+}
+
+@media(max-width: 600px){
+  .blog-title{ font-size: 1.9rem; }
+}
+
+/* ===========================
+   BANNER PRINCIPAL
+   =========================== */
 .blog-banner {
   position: relative;
   width: 100%;
   min-height: 350px;
   height: 500px;
   margin-bottom: 36px;
-  border-radius: 0;
   overflow: hidden;
   display: flex;
   align-items: stretch;
   justify-content: center;
-  box-shadow: none;
   background: #eee;
 }
 
@@ -49,16 +83,19 @@ body, .blog-container {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.7);
+  filter: brightness(0.72);
+  transition: filter .25s ease;
 }
+
+.blog-banner:hover .banner-image { filter: brightness(0.62); }
 
 .banner-content {
   position: absolute;
   left: 0;
   bottom: 0;
   padding: 30px;
-  color: white;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,0.62), transparent);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -84,14 +121,15 @@ body, .blog-container {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  opacity: 0.95;
 }
 
 .banner-date {
-  font-size: 0.8rem;
-  color: #eee;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
   margin-top: 8px;
   font-weight: 400;
-  opacity: 0.6;
+  opacity: 0.75;
 }
 
 .banner-footer {
@@ -110,32 +148,24 @@ body, .blog-container {
   }
 }
 
-@media (min-width: 601px) and (max-width: 1024px) {
-  .banner-footer {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-/* GRID DE TARJETAS */
+/* ===========================
+   GRID TARJETAS
+   =========================== */
 .blog-cards {
   display: grid;
   gap: 80px 52px;
   grid-template-columns: repeat(2, 1fr);
-  background: transparent;
 }
 
-/* TARJETAS */
+/* ===========================
+   TARJETAS
+   =========================== */
 .blog-card {
-  border-radius: 0;
-  box-shadow: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
   min-height: 340px;
-  border: none;
   margin: 0;
   font-family: 'Inter', sans-serif;
 }
@@ -149,7 +179,7 @@ body, .blog-container {
 }
 
 .blog-content {
-  padding: 32px 0px 20px 0px;
+  padding: 32px 0 20px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -160,7 +190,7 @@ body, .blog-container {
 }
 
 .blog-post-title {
-  color: #222;
+  color: var(--peonia-text);
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 12px;
@@ -173,14 +203,14 @@ body, .blog-container {
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1rem;
-  color: #464545;
+  color: rgba(59, 31, 71, 0.78);
   font-weight: 400;
   margin-bottom: 46px;
 }
 
 .blog-post-date {
   font-size: 0.96rem;
-  color: #9e9d9d;
+  color: rgba(59, 31, 71, 0.45);
   font-weight: 400;
   margin-top: auto;
   margin-bottom: 0;
@@ -188,40 +218,44 @@ body, .blog-container {
   letter-spacing: 0.01em;
 }
 
-/* RESPONSIVE */
+/* Hover (tarjetas) */
+.blog-card .blog-post-title:hover {
+  opacity: 0.9;
+  text-decoration: underline;
+}
+
+.blog-card .blog-image:hover { filter: brightness(0.95); }
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
 @media (max-width: 900px) {
   .blog-banner {
     height: 220px;
     min-height: 160px;
     padding: 0;
   }
+
   .banner-content {
-    padding: 18px 18px 22px 18px;
+    padding: 18px 18px 22px;
+    max-width: 100%;
   }
-  .banner-title {
-    font-size: 1.1rem;
-  }
-  .blog-cards {
-    grid-template-columns: 1fr;
-  }
+
+  .banner-title { font-size: 1.1rem; }
+
+  .blog-cards { grid-template-columns: 1fr; }
+
   .blog-content {
-    padding: 18px 10px 10px 10px;
+    padding: 18px 10px 10px;
     min-height: 100px;
   }
-  .blog-image {
-    height: 120px;
-  }
+
+  .blog-image { height: 120px; }
 }
 
-/* título */
-.blog-title {
-  font-size: 2.4rem;
-  color: #9C27B0;
-  font-weight: 700;
-  margin-bottom: 40px;
-}
-
-/* --- formulario --- */
+/* ===========================
+   FORMULARIO
+   =========================== */
 .blog-form {
   width: 100%;
   display: flex;
@@ -236,15 +270,23 @@ body, .blog-container {
   width: 100%;
   padding: 12px 14px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid rgba(156, 39, 176, 0.18);
+  border-radius: 10px;
   font-family: inherit;
   resize: vertical;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--peonia-text);
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease;
 }
 
-.blog-form textarea {
-  min-height: 140px;
+.blog-form input[type="text"]:focus,
+.blog-form textarea:focus {
+  border-color: rgba(156, 39, 176, 0.32);
+  box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.16);
 }
+
+.blog-form textarea { min-height: 140px; }
 
 .blog-buttons {
   display: flex;
@@ -255,139 +297,377 @@ body, .blog-container {
 }
 
 .blog-buttons button {
-  background-color: #9C27B0;
+  background-color: var(--peonia-lila);
   border: none;
   color: #fff;
   font-size: 1rem;
   padding: 12px 28px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color .25s;
+  transition: background-color .25s, transform .18s, box-shadow .25s;
+  box-shadow: 0 12px 24px rgba(84, 47, 82, 0.20);
 }
 
 .blog-buttons button:hover {
-  background-color: #6a1b9a;
+  background-color: var(--peonia-lila-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(56, 31, 55, 0.22);
 }
 
-.logout-button {
-  background-color: #f44336;
-}
-.logout-button:hover {
-  background-color: #c62828;
-}
+.logout-button { background-color: #f44336; }
+.logout-button:hover { background-color: #c62828; }
 
 .blog-message {
   margin-top: 18px;
   font-weight: 600;
-  color: #4caf50;
+  color: #2e7d32;
 }
-.blog-message.error {
-  color: #d32f2f;
-}
-
-@media(max-width: 600px){
-  .blog-title{
-    font-size: 1.9rem;
-  }
-}
+.blog-message.error { color: #d32f2f; }
 
 .blog-divider {
   border: 0;
   height: 2px;
-  background: #e4e4e4;
+  background: rgba(156, 39, 176, 0.12);
   margin: 28px 0 40px;
 }
 
-.blog-banner:hover .banner-image {
-  filter: brightness(0.6);
-}
-
+/* ===========================
+   READ MORE
+   =========================== */
 .read-more {
   position: absolute;
   bottom: 12px;
   left: 32px;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #6a1b9a;
+  color: var(--peonia-lila);
   text-decoration: none;
   transition: opacity .25s;
 }
 
-.read-more:hover {
-  opacity: .75;
-}
+.read-more:hover { opacity: .75; }
 
 .read-more-link {
   display: inline-block;
   margin-top: 14px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.95rem;
-  color: #5b1766;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.read-more-link:hover {
-  color: #e8b0f1;
+/* Link del banner (blanco) */
+.read-more-link { color: rgba(255,255,255,0.92); }
+.read-more-link:hover { opacity: 0.85; transform: translateX(2px); }
+
+/* "Leer artículo" dentro de tarjetas (lila) */
+.blog-card .read-more-link {
+  color: var(--peonia-lila);
+  font-weight: 700;
+}
+.blog-card .read-more-link:hover {
+  color: var(--peonia-lila-dark);
+  opacity: 1;
+  transform: translateX(2px);
 }
 
+/* ===========================
+   ADMIN BUTTONS (EDIT / DELETE)
+   =========================== */
 .edit-button,
 .delete-button {
   font-size: 0.85rem;
-  padding: 6px 12px;
+  padding: 8px 12px;
   margin-top: 10px;
   margin-right: 8px;
-  border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.25s ease, transform 0.18s ease, opacity 0.2s ease;
 }
 
-.edit-button {
-  background-color: #e0c3ec;
-  color: #6A1B9A;
-}
-.edit-button:hover {
-  background-color: #d1a9e6;
-}
-
+/* Admin en banner (glass blanco) */
+.edit-button,
 .delete-button {
-  background-color: #e0c3ec;
-  color: #6A1B9A;
-}
-.delete-button:hover {
-  background-color: #d1a9e6;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  backdrop-filter: blur(8px);
 }
 
+.edit-button:hover,
+.delete-button:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-1px);
+}
+
+/* Admin dentro de tarjetas (lila soft) */
+.blog-card .edit-button,
+.blog-card .delete-button,
+.banner-card .edit-button,
+.banner-card .delete-button {
+  color: var(--peonia-lila);
+  background: rgba(156, 39, 176, 0.08);
+  border: 1px solid rgba(156, 39, 176, 0.22);
+  backdrop-filter: none;
+}
+.blog-card .edit-button:hover,
+.blog-card .delete-button:hover {
+  background: rgba(156, 39, 176, 0.14);
+}
+
+/* Botón publicar */
 .publish-button {
-  background-color: #ca8ef0;
-  color: #4c0479;
+  background-color: rgba(255, 255, 255, 0.70);
+  color: var(--peonia-lila);
   padding: 10px 16px;
   font-size: 0.95rem;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(156, 39, 176, 0.18);
+  border-radius: 14px;
   cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  font-weight: 700;
+  transition: background-color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: var(--peonia-shadow-soft);
+  backdrop-filter: blur(10px);
 }
 
 .publish-button:hover {
-  background-color: #ae76d1;
+  background-color: rgba(255, 255, 255, 0.88);
+  border-color: rgba(156, 39, 176, 0.30);
+  transform: translateY(-1px);
 }
 
-/* Ocultar y mostrar versiones según tamaño de pantalla */
-.hide-on-mobile {
-  display: block;
-}
-.show-on-mobile {
-  display: none;
-}
+/* ===========================
+   MOBILE VISIBILITY HELPERS
+   =========================== */
+.hide-on-mobile { display: block; }
+.show-on-mobile { display: none; }
 
 @media (max-width: 768px) {
-  .hide-on-mobile {
-    display: none !important;
-  }
-  .show-on-mobile {
-    display: block !important;
-  }
+  .hide-on-mobile { display: none !important; }
+  .show-on-mobile { display: block !important; }
 }
 
+/* ===========================
+   BANNER MÓVIL COMO TARJETA
+   =========================== */
+.banner-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(156, 39, 176, 0.14);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+  overflow: hidden;
+  text-align: left;
+}
+
+.banner-card-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.92);
+}
+
+.banner-card-content {
+  padding: 18px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.banner-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--peonia-text);
+  margin: 0;
+}
+
+.banner-card-text {
+  margin: 0;
+  color: rgba(59, 31, 71, 0.78);
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.banner-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.banner-card-date {
+  font-size: 0.9rem;
+  color: rgba(59, 31, 71, 0.55);
+  white-space: nowrap;
+}
+
+/* En móvil el botón "Leer artículo" debe ser lila */
+.banner-card .read-more-link {
+  color: var(--peonia-lila);
+  font-weight: 800;
+}
+.banner-card .read-more-link:hover { color: var(--peonia-lila-dark); }
+
+/* ===========================
+   LOGIN MODAL (Blog)
+   =========================== */
+
+.login-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 10, 22, 0.45);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 18px;
+}
+
+.login-modal {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 245, 250, 0.96);
+  border: 1px solid rgba(156, 39, 176, 0.18);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  padding: 18px 18px 16px;
+  position: relative;
+}
+
+.login-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(156, 39, 176, 0.18);
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-modal-title {
+  margin: 6px 0 14px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--peonia-lila);
+  text-align: center;
+}
+
+.login-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-modal-form input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid rgba(156, 39, 176, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--peonia-text);
+  outline: none;
+}
+
+.login-modal-form input:focus {
+  border-color: rgba(156, 39, 176, 0.32);
+  box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.16);
+}
+
+.login-modal-password {
+  position: relative;
+}
+
+.login-modal-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--peonia-lila);
+  padding: 6px;
+}
+
+.login-modal-submit {
+  background-color: var(--peonia-lila);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 800;
+  box-shadow: 0 12px 24px rgba(84, 47, 82, 0.20);
+}
+
+.login-modal-submit:hover {
+  background-color: var(--peonia-lila-dark);
+}
+
+.login-modal-error {
+  margin: 0;
+  font-weight: 700;
+  color: #b00020;
+  text-align: center;
+}
+
+/* ===========================
+   BOTÓN LOGIN DISCRETO
+   =========================== */
+
+.login-link-button {
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--peonia-lila);
+  cursor: pointer;
+  padding: 4px 6px;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.login-link-button:hover {
+  opacity: 0.75;
+  transform: translateY(-1px);
+}
+
+/* ===========================
+   ACCIONES BLOG DISCRETAS
+   =========================== */
+
+.blog-action-link {
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--peonia-lila);
+  cursor: pointer;
+  padding: 4px 8px;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.blog-action-link:hover {
+  opacity: 0.75;
+  transform: translateY(-1px);
+}
+
+/* Variante aún más sutil para cerrar sesión */
+.blog-action-link.subtle {
+  opacity: 0.65;
+}
+
+.blog-action-link.subtle:hover {
+  opacity: 0.9;
+}
